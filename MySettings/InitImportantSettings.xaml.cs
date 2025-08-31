@@ -140,6 +140,8 @@ namespace Project_127.MySettings
                     HelperClasses.Logger.Log("Init important settings, in addGuesses, in RegistryBaseKey foreach, post epic");
                     string PossibleRockstar = HelperClasses.RegeditHandler.GetValue(myRKTemp, "InstallFolder");
                     HelperClasses.Logger.Log("Init important settings, in addGuesses, in RegistryBaseKey foreach, post rockstar");
+                    string PossibleXboxPC = HelperClasses.RegeditHandler.GetValue(myRKTemp, "InstallFolderXboxPc");
+                    HelperClasses.Logger.Log("Init important settings, in addGuesses, in RegistryBaseKey foreach, post XboxPC");
 
                     if (!string.IsNullOrEmpty(PossibleSteam))
                     {
@@ -152,6 +154,11 @@ namespace Project_127.MySettings
                     if (!string.IsNullOrEmpty(PossibleRockstar))
                     {
                         GTAVPathGuessesDuplicates.Add(new GTAVPathGuess(PossibleRockstar, Retailers.Rockstar));
+                    }
+
+                    if (!string.IsNullOrEmpty(PossibleXboxPC))
+                    {
+                        GTAVPathGuessesDuplicates.Add(new GTAVPathGuess(PossibleXboxPC, Retailers.XboxPC));
                     }
                 }
                 catch { }
