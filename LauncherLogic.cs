@@ -393,7 +393,7 @@ namespace Project_127
             }
             set
             {
-                if (Settings.Retailer == Settings.Retailers.Epic)
+                if (Settings.Retailer == Settings.Retailers.Epic || Settings.Retailer == Settings.Retailers.XboxPC)
                 {
                     if (value == LaunchWays.SocialClubLaunch)
                     {
@@ -1098,6 +1098,12 @@ namespace Project_127
                     // This does not work with custom wrapper StartProcess in ProcessHandler...i guess this is fine
                     Process.Start(@"com.epicgames.launcher://apps/9d2d0eb64d5c44529cece33fe2a46482?action=launch&silent=true");
                 }
+                // If XboxPC
+                else if (Settings.Retailer == Settings.Retailers.XboxPC)
+                {
+                    HelperClasses.Logger.Log("Trying to start Game normally through XboxPC.", 1);
+                    Process.Start(@"msgamelaunch://shortcutLaunch/?ProductId=9N9RSV4F7ZR0&Exe=GTAO");
+                }
                 // If Rockstar
                 else
                 {
@@ -1295,7 +1301,7 @@ namespace Project_127
                         {
                             Upgrade(false, true);
 
-                            if (LauncherLogic.LaunchWay == LauncherLogic.LaunchWays.DragonEmu || Settings.Retailer == Settings.Retailers.Epic)
+                            if (LauncherLogic.LaunchWay == LauncherLogic.LaunchWays.DragonEmu || Settings.Retailer == Settings.Retailers.Epic || Settings.Retailer == Settings.Retailers.XboxPC)
                             {
                                 if (Settings.DragonEmuGameVersion == "124")
                                 {
@@ -2050,6 +2056,7 @@ namespace Project_127
                 HelperClasses.Logger.Log("WriteReturningPlayerBonusToFile: " + filePath);
             }
         }
+
 
     } // End of Class
 } // End of NameSpace
