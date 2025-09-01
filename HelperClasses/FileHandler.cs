@@ -155,7 +155,13 @@ string lpSymlinkFileName, string lpTargetFileName, SymbolicLink dwFlags);
                     FileVersionInfo FVI = FileVersionInfo.GetVersionInfo(filePath);
                     rtrn = new Version(FVI.FileVersion);
                 }
-                catch { }
+                catch
+                {
+                    if (Settings.Retailer == Settings.Retailers.XboxPC && filePath == LauncherLogic.GTAVFilePath.TrimEnd('\\') + @"\gta5.exe")
+                    {
+                        rtrn = new Version("99.99.99.99");
+                    }
+                }
             }
 
             return rtrn;
