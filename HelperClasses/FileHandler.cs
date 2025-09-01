@@ -159,7 +159,7 @@ string lpSymlinkFileName, string lpTargetFileName, SymbolicLink dwFlags);
                 {
                     if (Settings.Retailer == Settings.Retailers.XboxPC)
                     {
-                        if (filePath == LauncherLogic.GTAVFilePath.TrimEnd('\\') + @"\gta5.exe" || filePath == LauncherLogic.UpgradeFilePath.TrimEnd('\\') + @"\gta5.exe")
+                        if (String.Equals(filePath, LauncherLogic.GTAVFilePath.TrimEnd('\\') + @"\gta5.exe", StringComparison.OrdinalIgnoreCase) || String.Equals(filePath, LauncherLogic.UpgradeFilePath.TrimEnd('\\') + @"\gta5.exe", StringComparison.OrdinalIgnoreCase))
                         {
                             rtrn = new Version("99.99.99.99");
                         }
