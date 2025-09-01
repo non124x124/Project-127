@@ -1372,6 +1372,12 @@ namespace Project_127
                 NewPath = Directory.GetParent(OrigPath).ToString().TrimEnd('\\') + @"\UpgradeFiles_Backup_" + NewPath.TrimEnd('\\');
             }
 
+            if (Settings.Retailer == Settings.Retailers.XboxPC)
+            {
+                PopupWrapper.PopupOk("Backup not available for XboxPC retailer.");
+                return;
+            }
+
             if (!(HelperClasses.FileHandling.GetFilesFromFolderAndSubFolder(UpgradeFilePath).Length >= 2 && HelperClasses.BuildVersionTable.IsUpgradedGTA(UpgradeFilePath)))
             {
                 PopupWrapper.PopupOk("No Upgrade Files available to back up.");
@@ -2060,4 +2066,5 @@ namespace Project_127
 
     } // End of Class
 } // End of NameSpace
+
 
