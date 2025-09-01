@@ -245,7 +245,7 @@ namespace Project_127
 
         public static string ExplorerExeFilePath { get { return WindowsDirectory.TrimEnd('\\') + @"\explorer.exe"; } } 
 
-        public static string NotepadExeFilePath { get { return WindowsDirectory.TrimEnd('\\') + @"\notepad.exe"; } }
+        public static string NotepadExeFilePath { get { return WindowsDirectory.TrimEnd('\\') + @"\System32\notepad.exe"; } }
 
         /// <summary>
         /// Returns all Command Line Args as StringArray
@@ -2168,3 +2168,4 @@ namespace Project_127
 
     } // End of Class
 } // End of Namespace
+
