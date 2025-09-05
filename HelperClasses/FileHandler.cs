@@ -1042,10 +1042,23 @@ string lpSymlinkFileName, string lpTargetFileName, SymbolicLink dwFlags);
             {
                 if (doesFileExist(pFilePath))
                 {
-                    File.SetAttributes(pFilePath, FileAttributes.Normal);
+                    if (Settings.Retailer == Settings.Retailers.XboxPC)
+                    {
+                        if (!String.Equals(pFilePath, LauncherLogic.GTAVFilePath.TrimEnd('\\') + @"\gta5.exe", StringComparison.OrdinalIgnoreCase) && !String.Equals(pFilePath, LauncherLogic.UpgradeFilePath.TrimEnd('\\') + @"\gta5.exe", StringComparison.OrdinalIgnoreCase) && !String.Equals(pFilePath, LauncherLogic.UpgradeFilePath.TrimEnd('\\') + @"\playgtav.exe", StringComparison.OrdinalIgnoreCase) && !String.Equals(pFilePath, LauncherLogic.GTAVFilePath.TrimEnd('\\') + @"\playgtav.exe", StringComparison.OrdinalIgnoreCase))
+                        {
+                            File.SetAttributes(pFilePath, FileAttributes.Normal);
+                        }
+                    }
+
+                    else
+                    {
+                        File.SetAttributes(pFilePath, FileAttributes.Normal);
+                    }
+
                     File.Delete(pFilePath);
                 }
             }
+            
             catch (Exception e)
             {
                 HelperClasses.Logger.Log("Deleting File failed ('" + pFilePath + "').", true, 0);
