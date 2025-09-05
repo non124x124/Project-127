@@ -813,6 +813,29 @@ namespace Project_127
                     Settings.AntiControlledFolderFix();
                 }
 
+				if (Settings.LastLaunchedVersion < new Version("1.5.4.0"))
+				{
+    				HelperClasses.Logger.Log("Last launched version is below 1.5.4.0");
+    				if (Settings.Retailer != Settings.Retailers.XboxPC)
+    				{
+        				try
+        				{
+            				RegistryKey BaseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(@"SOFTWARE\WOW6432Node\Rockstar Games\Grand Theft Auto V");
+            				string XboxInstallFolder = HelperClasses.RegeditHandler.GetValue(BaseKey, "InstallFolderXboxPc");
+            				if (!string.IsNullOrEmpty(XboxInstallFolder))
+            				{
+                				bool XboxChoice = PopupWrapper.PopupYesNo("Project 1.27 now supports XboxPC (Game Pass) retailer.\nIs your GTA V retailer XboxPC?");
+                				if (XboxChoice == true)
+                				{
+                    				Settings.Retailer = Settings.Retailers.XboxPC;
+                				}
+            				}
+        				}
+
+        				catch { }
+    				}
+				}
+
                 Settings.LastLaunchedVersion = Globals.ProjectVersion;
 
                 HelperClasses.Logger.Log("Deleting CEF_CacheFiles because you are on a P127 version you have not launched on your system yet.");
@@ -2168,4 +2191,5 @@ namespace Project_127
 
     } // End of Class
 } // End of Namespace
+
 
