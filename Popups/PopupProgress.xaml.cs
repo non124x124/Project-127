@@ -170,7 +170,7 @@ namespace Project_127.Popups
         {
             // Awaiting the Task of the Actual Work
             await Task.Run(new Action(ActualWork));
-            LauncherLogic.GUIUpdateLock = 0;
+            Volatile.Write(ref LauncherLogic.GUIUpdateLock, 0);
 
             // Close this
             this.Close();
