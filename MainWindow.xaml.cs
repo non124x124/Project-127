@@ -492,7 +492,7 @@ namespace Project_127
 
             SetButtonMouseOverMagic(btn_Auth);
 
-   			LauncherLogic.GUIUpdateLock = 0;
+   			Volatile.Write(ref LauncherLogic.GUIUpdateLock, 0);
         }
 
 
@@ -820,4 +820,5 @@ namespace Project_127
 
     } // End of Class
 } // End of Namespace
+
 
