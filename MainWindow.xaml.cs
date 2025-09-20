@@ -449,6 +449,11 @@ namespace Project_127
         /// <param name="e"></param>
         public void UpdateGUIDispatcherTimer(object sender = null, EventArgs e = null) // Gets called every DispatcherTimer_Tick. Just starts the read function.
         {
+			if (Interlocked.CompareExchange(ref LauncherLogic.GUIUpdateLock, 1, 0) == 1)
+			{
+    			return;
+			}
+  			
             if (LauncherLogic.InstallationState == LauncherLogic.InstallationStates.Downgraded)
             {
                 lbl_GTA.Foreground = MyColors.MW_GTALabelDowngradedForeground;
@@ -486,6 +491,8 @@ namespace Project_127
             }
 
             SetButtonMouseOverMagic(btn_Auth);
+
+   			LauncherLogic.GUIUpdateLock = 0;
         }
 
 
@@ -813,3 +820,4 @@ namespace Project_127
 
     } // End of Class
 } // End of Namespace
+
