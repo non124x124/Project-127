@@ -48,6 +48,12 @@ namespace Project_127
         public static bool InFileOperationWrapperLoop = false;
 
         /// <summary>
+        /// GUI Update lock, prevents gui update and file operations from executing at the same time.
+        /// </summary>
+
+        public static int GUIUpdateLock = 0;
+
+        /// <summary>
         /// Property of our GameState. Gets polled every 2.5 seconds
         /// </summary>
         public static GameStates GameState
@@ -2066,5 +2072,6 @@ namespace Project_127
 
     } // End of Class
 } // End of NameSpace
+
 
 
