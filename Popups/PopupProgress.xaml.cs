@@ -20,6 +20,7 @@ using System.Diagnostics;
 using GSF.IO;
 using System.Security.Cryptography;
 using CefSharp;
+using System.Threading;
 
 namespace Project_127.Popups
 {
@@ -169,6 +170,7 @@ namespace Project_127.Popups
         {
             // Awaiting the Task of the Actual Work
             await Task.Run(new Action(ActualWork));
+            LauncherLogic.GUIUpdateLock = 0;
 
             // Close this
             this.Close();
@@ -180,6 +182,11 @@ namespace Project_127.Popups
         [STAThread]
         public void ActualWork()
         {
+            while (Interlocked.CompareExchange(ref LauncherLogic.GUIUpdateLock, 1, 0) == 1)
+            {
+                Thread.Sleep(1);
+            }
+
             //Basically just executing a list of MyFileOperations
             if (ProgressType == ProgressTypes.FileOperation)
             {
