@@ -196,6 +196,8 @@ namespace Project_127.Popups
                 bool WarnedUserOfStuckProcessAlready = false;
                 bool CancelFileOperations = false;
 
+                LauncherLogic.InFileOperationWrapperLoop = true;
+
                 HelperClasses.Logger.Log("PopupProgress Lets do some File Operation Stuff");
                 for (int i = 0; i <= MyFileOperations.Count - 1; i++)
                 {
