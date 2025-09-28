@@ -48,6 +48,12 @@ namespace Project_127
         public static bool InFileOperationWrapperLoop = false;
 
         /// <summary>
+        /// GUI Update lock
+        /// </summary>
+
+        public static int GUIUpdateLock = 0;
+
+        /// <summary>
         /// Property of our GameState. Gets polled every 2.5 seconds
         /// </summary>
         public static GameStates GameState
